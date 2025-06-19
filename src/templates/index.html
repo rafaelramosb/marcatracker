@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarcaTracker - Seguimiento de Marcas Registradas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-color);
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .pricing-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .pricing-featured-header {
+            background-color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 100px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+                margin-top: 25px;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MarcaTracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#caracteristicas">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#planes">Planes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light ms-2" href="/login">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-accent ms-2" href="/registro">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1>Protege tus marcas registradas en Colombia</h1>
+                    <p>Monitorea, compara y recibe alertas sobre posibles conflictos con tu marca registrada. Mantente un paso adelante con nuestra plataforma de seguimiento inteligente.</p>
+                    <a href="/registro" class="btn btn-light btn-lg me-3">Comenzar Ahora</a>
+                    <a href="#planes" class="btn btn-outline-light btn-lg">Ver Planes</a>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="/static/img/hero-image.png" alt="MarcaTracker Dashboard" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Características Principales</h2>
+                <p class="lead">Todo lo que necesitas para proteger tus marcas registradas</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-search"></i>
+                            📊
+                        </div>
+                        <h3>Monitoreo Continuo</h3>
+                        <p>Seguimiento automático de la Gaceta de Propiedad Industrial y el portal de la SIC para detectar posibles conflictos con tu marca.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-bell"></i>
+                            🔔
+                        </div>
+                        <h3>Sistema de Alertas</h3>
+                        <p>Recibe notificaciones inmediatas cuando se detecten marcas similares o potencialmente conflictivas con la tuya.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-image"></i>
+                            🖼️
+                        </div>
+                        <h3>Comparación Visual</h3>
+                        <p>Análisis avanzado de similitud entre logos e imágenes para identificar posibles infracciones visuales.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-file-text"></i>
+                            📄
+                        </div>
+                        <h3>Informes Detallados</h3>
+                        <p>Reportes completos sobre el estado de tus marcas y posibles conflictos, con información actualizada de la SIC.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                            📈
+                        </div>
+                        <h3>Panel de Control</h3>
+                        <p>Visualiza toda la información relevante de tus marcas en un dashboard intuitivo y personalizable.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                            🛡️
+                        </div>
+                        <h3>Protección Proactiva</h3>
+                        <p>Recomendaciones y estrategias para proteger tus marcas antes de que surjan problemas legales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="planes" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Planes de Suscripción</h2>
+                <p class="lead">Elige el plan que mejor se adapte a tus necesidades</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="card pricing-card">
+                        <div class="pricing-header text-center">
+                            <h3>Básico</h3>
+                            <h2 class="display-4">$49.900</h2>
+                            <p>por mes</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">✅ Monitoreo de hasta 3 marcas</li>
+                                <li class="mb-3">✅ Alertas por correo electrónico</li>
+                                <li class="mb-3">✅ Comparación por nombre</li>
+                                <li class="mb-3">❌ Comparación de imágenes</li>
+                                <li class="mb-3">❌ Informes personalizados</li>
+                                <li class="mb-3">❌ Soporte prioritario</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <a href="/registro?plan=basico" class="btn btn-primary btn-lg w-100">Seleccionar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card pricing-card featured">
+                        <div class="pricing-header pricing-featured-header text-center">
+                            <h3>Premium</h3>
+                            <h2 class="display-4">$99.900</h2>
+                            <p>por mes</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">✅ Monitoreo de hasta 10 marcas</li>
+                                <li class="mb-3">✅ Alertas por correo y SMS</li>
+                                <li class="mb-3">✅ Comparación por nombre</li>
+                                <li class="mb-3">✅ Comparación de imágenes</li>
+                                <li class="mb-3">✅ Informes personalizados</li>
+                                <li class="mb-3">❌ Soporte prioritario</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <a href="/registro?plan=premium" class="btn btn-accent btn-lg w-100">Seleccionar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card pricing-card">
+                        <div class="pricing-header text-center">
+                            <h3>Empresarial</h3>
+                            <h2 class="display-4">$199.900</h2>
+                            <p>por mes</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">✅ Monitoreo ilimitado de marcas</li>
+                                <li class="mb-3">✅ Alertas por correo, SMS y API</li>
+                                <li class="mb-3">✅ Comparación por nombre</li>
+                                <li class="mb-3">✅ Comparación avanzada de imágenes</li>
+                                <li class="mb-3">✅ Informes personalizados</li>
+                                <li class="mb-3">✅ Soporte prioritario 24/7</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <a href="/registro?plan=empresarial" class="btn btn-primary btn-lg w-100">Seleccionar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="display-5 fw-bold mb-4">¿Tienes preguntas?</h2>
+                    <p class="lead mb-4">Nuestro equipo está listo para ayudarte con cualquier consulta sobre nuestros servicios de seguimiento de marcas.</p>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3 fs-4">📧</div>
+                        <div>
+                            <h5 class="mb-0">Correo Electrónico</h5>
+                            <p class="mb-0">contacto@marcatracker.co</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3 fs-4">📱</div>
+                        <div>
+                            <h5 class="mb-0">Teléfono</h5>
+                            <p class="mb-0">+57 (1) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="me-3 fs-4">🏢</div>
+                        <div>
+                            <h5 class="mb-0">Oficina</h5>
+                            <p class="mb-0">Calle 93 #13-24, Oficina 402<br>Bogotá, Colombia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">Envíanos un mensaje</h3>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre completo</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Asunto</label>
+                                    <input type="text" class="form-control" id="subject">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h4 class="mb-4">MarcaTracker</h4>
+                    <p>La solución más completa para el seguimiento y protección de marcas registradas en Colombia.</p>
+                </div>
+                
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="mb-3">Enlaces</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Inicio</a></li>
+                        <li class="mb-2"><a href="#caracteristicas">Características</a></li>
+                        <li class="mb-2"><a href="#planes">Planes</a></li>
+                        <li class="mb-2"><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="mb-3">Legal</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Términos y Condiciones</a></li>
+                        <li class="mb-2"><a href="#">Política de Privacidad</a></li>
+                        <li class="mb-2"><a href="#">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3">
+                    <h5 class="mb-3">Síguenos</h5>
+                    <div class="d-flex">
+                        <a href="#" class="me-3 fs-4">📱</a>
+                        <a href="#" class="me-3 fs-4">💻</a>
+                        <a href="#" class="me-3 fs-4">📘</a>
+                        <a href="#" class="fs-4">📸</a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-light">
+            
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 MarcaTracker. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
